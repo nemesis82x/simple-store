@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Role;
 use App\Models\User;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -11,6 +12,9 @@ class ManageUsers extends Component
     use WithPagination;
 
     public $search = '';
+    public $searchName = '';
+    public $searchEmail = '';
+    public $searchRole = '';
     protected $queryString = [
         'search' => ['except' => '', 'as' => 's'],
         'page' => ['except' => 1, 'as' => 'p'],
@@ -43,26 +47,37 @@ class ManageUsers extends Component
 
     public function render()
     {
-
-        if($this->sortField == 'role'){
-            //dd($this->sortField);
+        if($this->searchName) {
             return view('livewire.manage-users',[
-                'users' => User::wherehas('roles', function ($query){
-                        $query->where('name','like','%' . $this->search .'%')
-                            ->orderby('name',$this->sortDirection);
-                    })
+                'users' => User::where('name', 'like', '%'.$this->searchName.'%')
+                    ->orderby($this->sortField,$this->sortDirection)
                     ->paginate(6)
+
             ]);
+        }
+
+        if($this->searchEmail) {
+            return view('livewire.manage-users',[
+                'users' => User::where('email', 'like', '%'.$this->searchEmail.'%')
+                    ->paginate(6)
+
+            ]);
+        }
+
+        if($this->searchRole) {
+            return view('livewire.manage-users',[
+                'users' => User::whereHas('roles', function ($query){
+                    $query->where('name','like', '%'.$this->searchRole.'%');})
+                    ->paginate(6)
+
+            ]);
+
         }
 
         return view('livewire.manage-users',[
             'users' => User::with('roles')
-            ->where('name', 'like', '%'.$this->search.'%')
-                ->orWhere('email','like', '%'.$this->search.'%')
-                ->orwhereHas('roles', function ($query){
-                    $query->where('name','like','%' . request('search') .'%');
-                })
                 ->paginate(6)
+
         ]);
     }
 

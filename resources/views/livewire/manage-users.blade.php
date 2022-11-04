@@ -9,17 +9,6 @@
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
             <div class="p-6 bg-white border-b border-gray-200">
                 <div>
-                    <div class="flex justify-between my-2">
-
-                        <input wire:model="search" type="text" placeholder="Search post by title"
-                               class="w-1/4 rounded-lg shadow">
-
-                        <input type="submit" value="New"
-                               class="mr-6 bg-green-400 px-4 rounded-lg font-bold uppercase cursor-pointer shadow"
-                               onclick="location.href='create'">
-
-                    </div>
-
                     <div>
                         @if (session()->has('message'))
                             <div class="bg-blue-100 border border-blue-400 text-black px-4 py-3 rounded relative">
@@ -77,6 +66,7 @@
                             </th>
                         </tr>
                         </thead>
+                        <x-search-table/>
                         <tbody>
                         @unless($users->isEmpty())
                             @foreach($users as $user)
