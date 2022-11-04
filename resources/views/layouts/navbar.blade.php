@@ -1,7 +1,5 @@
-
 <nav class="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-900">
     <div class="container flex flex-wrap justify-between items-center mx-auto">
-        <x-drawer-button/>
         <a href="https://flowbite.com/" class="flex items-center">
             <img src="https://flowbite.com/docs/images/logo.svg" class="mr-3 h-6 sm:h-9" alt="Flowbite Logo">
             <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">Flowbite</span>
@@ -37,6 +35,11 @@
                 <li>
                     <x-nav-link :href="route('register')" :active="request()->routeIs('register')">
                         {{ __('Register') }}
+                    </x-nav-link>
+                </li>
+                <li>
+                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                        {{ __('dashboard') }}
                     </x-nav-link>
                 </li>
             </ul>
