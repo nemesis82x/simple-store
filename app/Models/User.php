@@ -63,4 +63,5 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->roles()->where('name', 'Customer')->exists();
     }
 
+
 }

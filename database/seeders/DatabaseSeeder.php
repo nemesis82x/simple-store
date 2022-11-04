@@ -15,14 +15,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+         \App\Models\User::factory(10)->create();
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
 
-        Role::create(
+/*        Role::create(
             ['name'=>'Administrator']
         );
         Role::create(
@@ -36,6 +36,6 @@ class DatabaseSeeder extends Seeder
         );
         Role::create(
             ['name'=>'Customer']
-        );
+        );*/
     }
 }
