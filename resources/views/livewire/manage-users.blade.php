@@ -62,6 +62,9 @@
                                 <span class="sr-only">Edit</span>
                             </th>
                             <th scope="col" class="py-3 px-6 text">
+                                <span class="sr-only">Trash</span>
+                            </th>
+                            <th scope="col" class="py-3 px-6 text">
                                 <span class="sr-only">Delete</span>
                             </th>
                         </tr>
@@ -89,6 +92,10 @@
                                     <td class="py-4 px-6 text-right">
                                         <a href="edit/{{$user->id}}"
                                            class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                                    </td>
+                                    <td class="py-4 px-12 text-right">
+                                        <a href="edit/{{$user->id}}"
+                                           class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Trash</a>
                                     </td>
                                     <td class="py-4 px-6 text-right">
 
