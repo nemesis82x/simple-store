@@ -4,6 +4,12 @@
     </h2>
 </x-slot>
 
+<div>
+    <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+{{$totalAdmin}}
+    </h2>
+</div>
+
 <div class="py-12">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
@@ -15,6 +21,17 @@
                                 {{ session('message') }}
                             </div>
                         @endif
+                    </div>
+
+                    <div class="flex flex-row gap-12">
+                    <div class="bg-blue-200 px-4 py-4 text-center text-gray-900 rounded rounded-full">
+                        <p class="uppercase">Total Admin</p>
+                        <p class="text-2xl font-bold">{{$totalAdmin}}</p>
+                    </div>
+                        <div class="bg-blue-200 px-4 py-4 text-center text-gray-900 rounded rounded-full">
+                            <p class="uppercase">Total Manager</p>
+                            <p class="text-2xl font-bold">{{$totalManager}}</p>
+                    </div>
                     </div>
 
                     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">

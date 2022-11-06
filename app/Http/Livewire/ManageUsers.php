@@ -23,6 +23,8 @@ class ManageUsers extends Component
     public $sortField = 'name';
     public $sortDirection = 'asc';
     public $deleteGetId;
+    public $totalAdmin;
+    public $totalManager;
 
     public function updatingSearch()
 
@@ -81,9 +83,15 @@ class ManageUsers extends Component
         ]);
     }
 
+    public function mount(){
+    $this->totalAdmin = User::whereHas('roles', function ($query){
+            $query->where('name','=','Administrator');})
+            ->count();
+
+        $this->totalManager = User::whereHas('roles', function ($query){
+            $query->where('name','=','Manager');})
+            ->count();
+
+    }
+
 }
-
-
-/*'users' => User::with('roles')
-    ->where('name','like','%' . $this->search .'%')
-    ->paginate(6)*/
