@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Models\Role;
 use App\Models\User;
+use http\Client\Request;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -92,6 +93,26 @@ class ManageUsers extends Component
             $query->where('name','=','Manager');})
             ->count();
 
+        $this->totalBlogger = User::whereHas('roles', function ($query){
+            $query->where('name','=','Blogger');})
+            ->count();
+
+        $this->totalShop = User::whereHas('roles', function ($query){
+            $query->where('name','=','Shop');})
+            ->count();
+
+        $this->totalCustomer = User::whereHas('roles', function ($query){
+            $query->where('name','=','Customer');})
+            ->count();
+
+    }
+
+    public function searchRole($searchRole)
+    {
+
+       // dd($searchRole);
+
+        $this->emit($this->render(), $this->searchRole = $searchRole);
     }
 
 }

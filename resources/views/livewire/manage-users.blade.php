@@ -4,12 +4,6 @@
     </h2>
 </x-slot>
 
-<div>
-    <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-{{$totalAdmin}}
-    </h2>
-</div>
-
 <div class="py-12">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
@@ -23,15 +17,44 @@
                         @endif
                     </div>
 
-                    <div class="flex flex-row gap-12">
-                    <div class="bg-blue-200 px-4 py-4 text-center text-gray-900 rounded rounded-full">
-                        <p class="uppercase">Total Admin</p>
-                        <p class="text-2xl font-bold">{{$totalAdmin}}</p>
-                    </div>
-                        <div class="bg-blue-200 px-4 py-4 text-center text-gray-900 rounded rounded-full">
-                            <p class="uppercase">Total Manager</p>
+                    <div class="flex flex-row gap-12 justify-center">
+                        <a href="#" wire:click="searchRole('Administrator')">
+                            <div class="bg-red-200 px-4 py-4 text-center text-gray-900 rounded-lg w-48">
+                                <p class="uppercase">Administrator</p>
+                                <p class="text-2xl font-bold">{{$totalAdmin}}</p>
+                            </div>
+                        </a>
+
+                        <a href="#" wire:click="searchRole('Manager')">
+                        <div class="bg-yellow-200 px-4 py-4 text-center text-gray-900 rounded-lg w-48">
+                            <p class="uppercase">Manager</p>
                             <p class="text-2xl font-bold">{{$totalManager}}</p>
-                    </div>
+                        </div>
+                        </a>
+
+                        <a href="#" wire:click="searchRole('Blogger')">
+                        <div class="bg-blue-200 px-4 py-4 text-center text-gray-900 rounded-lg w-48">
+                            <p class="uppercase">Blogger</p>
+                            <p class="text-2xl font-bold">{{$totalBlogger}}</p>
+                        </div>
+                        </a>
+
+                        <a href="#" wire:click="searchRole('Shop')">
+                        <div class="bg-green-200 px-4 py-4 text-center text-gray-900 rounded-lg w-48">
+                            <p class="uppercase">Shop Manager</p>
+                            <p class="text-2xl font-bold">{{$totalShop}}</p>
+                        </div>
+                        </a>
+
+                        <a href="#" wire:click="searchRole('Customer')">
+                        <div class="bg-orange-200 px-4 py-4 text-center text-gray-900 rounded-lg  w-48">
+                            <p class="uppercase">Customer</p>
+                            <p class="text-2xl font-bold">{{$totalCustomer}}</p>
+                        </div>
+                        </a>
+
+
+
                     </div>
 
                     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -64,14 +87,7 @@
 
                             <th scope="col" class="py-3 px-6">
                                 <div class="flex items-center">
-                                    <a href="#" wire:click="sortBy('role')">Role</a>
-                                    <a href="#">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="ml-1 w-3 h-3" aria-hidden="true"
-                                             fill="currentColor" viewBox="0 0 320 512">
-                                            <path
-                                                d="M27.66 224h264.7c24.6 0 36.89-29.78 19.54-47.12l-132.3-136.8c-5.406-5.406-12.47-8.107-19.53-8.107c-7.055 0-14.09 2.701-19.45 8.107L8.119 176.9C-9.229 194.2 3.055 224 27.66 224zM292.3 288H27.66c-24.6 0-36.89 29.77-19.54 47.12l132.5 136.8C145.9 477.3 152.1 480 160 480c7.053 0 14.12-2.703 19.53-8.109l132.3-136.8C329.2 317.8 316.9 288 292.3 288z"></path>
-                                        </svg>
-                                    </a>
+                                    <a wire:click="sortBy('role')">Role</a>
                                 </div>
                             </th>
 

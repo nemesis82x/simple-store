@@ -10,11 +10,6 @@
            class="w-full rounded-lg shadow">
     </th>
 
-    <th scope="col" class="px-6">
-        <input wire:model="searchRole" type="text" placeholder="Filter user by role"
-               class="w-full rounded-lg shadow">
-    </th>
-
     <th scope="col" class="py-3 px-6">
         <span class="sr-only">Edit</span>
     </th>
