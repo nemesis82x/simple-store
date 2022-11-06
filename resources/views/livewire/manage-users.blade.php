@@ -11,7 +11,7 @@
                 <div>
                     <div>
                         @if (session()->has('message'))
-                            <div class="bg-blue-100 border border-blue-400 text-black px-4 py-3 rounded relative">
+                            <div class="bg-blue-100 border border-blue-400 text-black px-4 py-3 rounded relative mb-2">
                                 {{ session('message') }}
                             </div>
                         @endif

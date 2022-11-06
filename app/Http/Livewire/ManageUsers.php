@@ -122,7 +122,9 @@ class ManageUsers extends Component
     public function deleteYes(){
 
         $user = User::findorfail($this->deleteGetId);
-
+        $user->roles()->sync([]); // Cancellare record in pivot table
+        $user->delete(); // Cancellare utente
+        $this->redirect('users'); // Faccio redirect cosi aggiorno la dashboard users
         session()->flash('message', 'User successfully deleted.');
 
     }

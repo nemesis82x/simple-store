@@ -63,13 +63,4 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->roles()->where('name', 'Customer')->exists();
     }
 
-    public static function boot() {
-        parent::boot();
-
-        static::deleting(function($user) {
-            $user->roles()->delete();
-        });
-    }
-
-
 }
