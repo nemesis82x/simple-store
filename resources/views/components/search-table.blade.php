@@ -11,10 +11,13 @@
     </th>
 
     <th scope="col" class="py-3 px-6">
-        <span class="sr-only">Edit</span>
+        <span class="sr-only"></span>
     </th>
     <th scope="col" class="py-3 px-6">
-        <span class="sr-only">Trash</span>
+        <span class="sr-only"></span>
+    </th>
+    <th scope="col" class="py-3 px-6">
+        <span class="sr-only"></span>
     </th>
     <th scope="col" class=" px-6 text">
     <input type="submit" value="New"

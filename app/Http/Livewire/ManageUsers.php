@@ -111,8 +111,20 @@ class ManageUsers extends Component
     {
 
        // dd($searchRole);
-
+        $this->resetPage();
         $this->emit($this->render(), $this->searchRole = $searchRole);
+    }
+
+    public function deleteId($field){
+        $this->deleteGetId = $field;
+    }
+
+    public function deleteYes(){
+
+        $user = User::findorfail($this->deleteGetId);
+
+        session()->flash('message', 'User successfully deleted.');
+
     }
 
 }
