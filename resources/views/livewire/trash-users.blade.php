@@ -51,9 +51,6 @@
                                 </div>
                             </th>
 
-                            <th scope="col" class="py-3 px-6">
-                                <span class="sr-only">Edit</span>
-                            </th>
                             <th scope="col" class="py-3 px-6 text">
                                 <span class="sr-only">Restore</span>
                             </th>
@@ -83,8 +80,8 @@
 
 
                                     <td class="py-4 px-6 text-right">
-                                        <a href="edit/{{$user->id}}"
-                                           class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                                        <span
+                                           class="font-medium text-blue-600 dark:text-blue-500 hover:underline"></span>
                                     </td>
                                     <td class="py-4 px-12 text-right">
                                         <a href="#" wire:click="restoreYes('{{$user->id}}')"
