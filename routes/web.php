@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Livewire\ManageUsers;
+use App\Http\Livewire\TrashUsers;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,6 +26,7 @@ Route::get('/dashboard', function () {
 //Route::get('/users',ManageUsers::class)->middleware(['auth','verified'])->name('users');
 
 Route::get('/users',ManageUsers::class);
+Route::get('/trash',TrashUsers::class);
 
 
 /*Route::get('/dashboard', function () {

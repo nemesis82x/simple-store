@@ -26,6 +26,7 @@ class ManageUsers extends Component
     public $deleteGetId;
     public $totalAdmin;
     public $totalManager;
+    public $totalUsers;
 
     public function updatingSearch()
 
@@ -133,7 +134,7 @@ class ManageUsers extends Component
 
         $this->deleteGetId = $field;
         $user = User::findorfail($this->deleteGetId);
-        $user->roles()->sync([]); // Cancellare record in pivot table
+        //$user->roles()->sync([]); // Mettendo in TRASH non rimuovere sync con pivot
         $user->delete(); // Mettere utente in trash con Softdelete
         $this->redirect('users'); // Faccio redirect cosi aggiorno la dashboard users
         session()->flash('message', 'User successfully move to trash.');

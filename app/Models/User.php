@@ -5,6 +5,7 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Prunable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -12,7 +13,7 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use HasApiTokens, HasFactory, Notifiable, Softdeletes;
+    use HasApiTokens, HasFactory, Notifiable, Softdeletes, Prunable;
 
     /**
      * The attributes that are mass assignable.
@@ -62,6 +63,11 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function isCustomer() {
         return $this->roles()->where('name', 'Customer')->exists();
+    }
+
+    public function prunable()
+    {
+        return static::where('created_at', '<=', now()->subWeek());
     }
 
 }
