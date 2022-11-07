@@ -141,4 +141,9 @@ class ManageUsers extends Component
 
     }
 
+    public function editId()
+    {
+        return view('livewire.edit-user');
+    }
+
 }
