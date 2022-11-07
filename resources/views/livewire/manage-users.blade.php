@@ -124,7 +124,7 @@
 
                                     <td class="py-4 px-6 text-right">
                                         <button
-                                            class="block text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-red-700 dark:focus:ring-blue-800"
+                                            class="block text-white bg-indigo-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-red-700 dark:focus:ring-blue-800"
                                             type="button" data-modal-toggle="edit-modal"
                                             wire:click="editId('{{$user->id}}')">
                                             Edit
@@ -216,23 +216,31 @@
                                                                       d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                                                             </svg>
                                                             <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400"></h3>
-                                                            <div class="my-2">
-                                                                <input type="text" wire:model="editName">
-                                                                <input type="text" wire:model="editEmail">
 
-                                                                <select wire:model.lazy="editRole" name="editRole" id="editRole" class="form-control" required>
-                                                                    @foreach($this->allRoles as $role)
-                                                                        <option
-                                                                            value="{!! $role['name'] !!}"
-                                                                            wire:key="{{$role['name']}}"
-                                                                        >
-                                                                            {!! $role['name'] !!}
-                                                                        </option>
-                                                                    @endforeach
-                                                                </select>
-
-
+                                                            <div class="grid gap-6 mb-6 md:grid-cols-2">
+                                                                <div>
+                                                                    <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Full name</label>
+                                                                    <input type="text" wire:model="editName" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="John" required>
+                                                                </div>
+                                                                <div>
+                                                                    <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Role assigned</label>
+                                                                    <select wire:model.lazy="editRole" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                                                        @foreach($this->allRoles as $role)
+                                                                            <option
+                                                                                value="{!! $role['name'] !!}"
+                                                                                wire:key="{{$role['name']}}"
+                                                                            >
+                                                                                {!! $role['name'] !!}
+                                                                            </option>
+                                                                        @endforeach
+                                                                    </select>
+                                                                </div>
                                                             </div>
+                                                            <div>
+                                                                <label for="editEmail" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300 w-full">Email Address</label>
+                                                                <input type="text" wire:model="editEmail" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mb-4" placeholder="John" required>
+                                                            </div>
+
                                                             <button data-modal-toggle="edit-modal" type="button"
                                                                     class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2"
                                                                     wire:click="editYes">
