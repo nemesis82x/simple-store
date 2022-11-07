@@ -28,6 +28,12 @@ class ManageUsers extends Component
     public $totalManager;
     public $totalUsers;
 
+    public $editGetId;
+    public $editName;
+    public $editEmail;
+    public $allRoles = [];
+    public $editRole;
+
     public function updatingSearch()
 
     {
@@ -77,6 +83,8 @@ class ManageUsers extends Component
             ]);
 
         }
+
+        $this->allRoles = Role::all();
 
         return view('livewire.manage-users',[
             'users' => User::with('roles')
@@ -141,9 +149,19 @@ class ManageUsers extends Component
 
     }
 
-    public function editId()
-    {
-        return view('livewire.edit-user');
+    public function editId($field){
+       // $this->deleteGetId = $field;
+        $this->editGetId = $field;
+        //$user = User::findOrFail($field);
+        $user = User::with('roles')
+            ->findOrFail($field);
+        $this->editName = $user->name;
+        $this->editEmail = $user->email;
+
+        $this->editRole = Role::whereHas('users', function($query) {
+            $query->where('user_id',$this->editGetId);
+        })->pluck('name');
+
     }
 
 }

@@ -126,7 +126,7 @@
                                         <button
                                             class="block text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-red-700 dark:focus:ring-blue-800"
                                             type="button" data-modal-toggle="edit-modal"
-                                            wire:model="render('{{$user->id}}')" wire:click="render('{{$user->id}}')">
+                                            wire:click="editId('{{$user->id}}')">
                                             Edit
                                         </button>
                                     </td>
@@ -170,8 +170,7 @@
                                                                       stroke-width="2"
                                                                       d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                                                             </svg>
-                                                            <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">
-                                                                Are you sure you want to delete this user?</h3>
+                                                            <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Are you sure you want to delete this user?</h3>
                                                             <button data-modal-toggle="popup-modal" type="button"
                                                                     class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2"
                                                                     wire:click="deleteYes">
@@ -216,8 +215,18 @@
                                                                       stroke-width="2"
                                                                       d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                                                             </svg>
-                                                            <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">
-                                                                @livewire('edit-user')</h3>
+                                                            <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400"></h3>
+                                                            <div class="my-2">
+                                                                <input type="text" wire:model="editName">
+                                                                <input type="text" wire:model="editEmail">
+                                                                <input type="text" wire:model="editRole">
+                                                                <select name="editRole" wire:model="editRole" class="form-control" >
+                                                                    <option value=""></option>
+                                                                @foreach($this->allRoles as $role)
+                                                                    <option value= {{$role->id}}>{{$role->name}}</option>
+                                                                @endforeach
+                                                                </select>
+                                                            </div>
                                                             <button data-modal-toggle="edit-modal" type="button"
                                                                     class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2"
                                                                     wire:click="editYes">
