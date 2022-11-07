@@ -32,7 +32,7 @@ class ManageUsers extends Component
     public $editName;
     public $editEmail;
     public $allRoles = [];
-    public $editRole;
+    public $editRole = [];
 
     public function updatingSearch()
 
@@ -84,6 +84,9 @@ class ManageUsers extends Component
 
         }
 
+        // Per fare loop e popolare la select box.
+        // va in accoppiata con $this->editRole nella
+        // funzione editId
         $this->allRoles = Role::all();
 
         return view('livewire.manage-users',[
@@ -162,6 +165,24 @@ class ManageUsers extends Component
             $query->where('user_id',$this->editGetId);
         })->pluck('name');
 
+    }
+
+    public function editYes(){
+        //dd($this->editGetId);
+        //dd($this->editName);
+        //dd($this->editRole[0]);
+
+        $user = User::with('roles')->findOrFail($this->editGetId);
+        $user->name = $this->editName;
+        $user->email = $this->editEmail;
+
+        $userRole = Role::where('name',$this->editRole)->pluck('id');
+
+        $user->roles()->sync($userRole);
+
+        $user->save();
+        $this->redirect('users'); // Faccio redirect cosi aggiorno la dashboard users
+        session()->flash('message', 'User successfully updated.');
     }
 
 }

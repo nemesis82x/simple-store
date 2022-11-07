@@ -219,13 +219,19 @@
                                                             <div class="my-2">
                                                                 <input type="text" wire:model="editName">
                                                                 <input type="text" wire:model="editEmail">
-                                                                <input type="text" wire:model="editRole">
-                                                                <select name="editRole" wire:model="editRole" class="form-control" >
-                                                                    <option value=""></option>
-                                                                @foreach($this->allRoles as $role)
-                                                                    <option value= {{$role->id}}>{{$role->name}}</option>
-                                                                @endforeach
+
+                                                                <select wire:model.lazy="editRole" name="editRole" id="editRole" class="form-control" required>
+                                                                    @foreach($this->allRoles as $role)
+                                                                        <option
+                                                                            value="{!! $role['name'] !!}"
+                                                                            wire:key="{{$role['name']}}"
+                                                                        >
+                                                                            {!! $role['name'] !!}
+                                                                        </option>
+                                                                    @endforeach
                                                                 </select>
+
+
                                                             </div>
                                                             <button data-modal-toggle="edit-modal" type="button"
                                                                     class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2"
