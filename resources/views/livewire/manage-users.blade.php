@@ -127,8 +127,9 @@
                                            class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
                                     </td>
                                     <td class="py-4 px-12 text-right">
-                                        <a href="edit/{{$user->id}}"
-                                           class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Trash</a>
+                                        <a href="#" wire:click="trashYes('{{$user->id}}')"
+                                           class="font-medium text-white dark:text-blue-500 hover:underline bg-gray-500
+                                           py-2.5 px-5 rounded-lg">Trash</a>
                                     </td>
                                     <td class="py-4 px-6 text-right">
 

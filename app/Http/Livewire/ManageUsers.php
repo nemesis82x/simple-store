@@ -123,9 +123,20 @@ class ManageUsers extends Component
 
         $user = User::findorfail($this->deleteGetId);
         $user->roles()->sync([]); // Cancellare record in pivot table
-        $user->delete(); // Cancellare utente
+        $user->forceDelete(); // Cancellare utente permanentemente
         $this->redirect('users'); // Faccio redirect cosi aggiorno la dashboard users
-        session()->flash('message', 'User successfully deleted.');
+        session()->flash('message', 'User deleted permanently.');
+
+    }
+
+    public function trashYes($field){
+
+        $this->deleteGetId = $field;
+        $user = User::findorfail($this->deleteGetId);
+        $user->roles()->sync([]); // Cancellare record in pivot table
+        $user->delete(); // Mettere utente in trash con Softdelete
+        $this->redirect('users'); // Faccio redirect cosi aggiorno la dashboard users
+        session()->flash('message', 'User successfully move to trash.');
 
     }
 
