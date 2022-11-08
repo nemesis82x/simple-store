@@ -43,9 +43,31 @@ class UserProfile extends Component
         $user = User::findOrFail(auth()->id());
         $user->name = $this->name;
 
-        $avatar = UserPhoto::where('user_id',$user->id);
-        $avatar->user_id = 101;
+        $avatar = UserPhoto::where('user_id',auth()->id())
+        ->where('type','avatar')
+        ->pluck('id')
+        ->toArray();
+        //dd($avatar);
+
+        $avatar_update = UserPhoto::where('user_id','101')
+            ->where('type','avatar')
+            ->firstOrFail();
+dd($avatar_update);
+        if($avatar_update){
+            return 'vuoto';
+        }
+
+
+           // dd($avatar);
+
+            $user->photos()->sync('pippo');
+
+
+       // $avatar = UserPhoto::findOrFail($avatar[0]);
+
+        //dd($avatar);
         $avatar->name = 'avatar';
+        $avatar->path = 'ava_path';
 
         $avatar->save();
         //$user->save();

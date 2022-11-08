@@ -52,7 +52,7 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     public function photos(){
-        return $this->hasOne(UserPhoto::class);
+        return $this->hasMany(UserPhoto::class);
     }
 
     // Verifica ruoli
