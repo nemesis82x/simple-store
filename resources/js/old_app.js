@@ -6,5 +6,5 @@ window.Alpine = Alpine;
 
 Alpine.start();
 
-import * as Flowbite from 'flowbite';
+import Flowbite from 'flowbite';
 window.Flowbite = Flowbite;
