@@ -101,6 +101,9 @@ use App\Models\User;
                             <a href="/trash" class="flex items-center w-full p-2 text-base font-normal text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 justify-between">Trashed
                                 <span class="inline-flex items-center justify-center w-3 h-3 p-3 ml-3 text-sm font-medium text-blue-600 bg-blue-200 rounded-full dark:bg-blue-900 dark:text-blue-200">{{$trashedUsers}}</span></a>
                         </li>
+                        <li>
+                            <a href="/profile" class="flex items-center w-full p-2 text-base font-normal text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 justify-between">Profile</a>
+                          </li>
                     </ul>
                 </li>
 

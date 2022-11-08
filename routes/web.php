@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Livewire\ManageUsers;
-use App\Http\Livewire\TrashUsers;
+use App\Http\Livewire\Users\ManageUsers;
+use App\Http\Livewire\Users\TrashUsers;
+use App\Http\Livewire\Users\UserProfile;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,6 +28,7 @@ Route::get('/dashboard', function () {
 
 Route::get('/users',ManageUsers::class);
 Route::get('/trash',TrashUsers::class);
+Route::get('/profile',UserProfile::class);
 
 
 /*Route::get('/dashboard', function () {
