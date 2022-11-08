@@ -31,6 +31,9 @@ class RegisteredUserController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
+
+    public $totalAdmin;
+
     public function store(Request $request)
     {
         $request->validate([
@@ -45,7 +48,19 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        $user->roles()->sync('5'); // 5->Customer
+        $totalAdmin = User::whereHas('roles', function ($query){
+            $query->where('name','=','Administrator');})
+            ->count();
+        //dd($totalAdmin);
+
+        // Il primo utente che si registra avrà ruolo di Administrator
+        if($totalAdmin == 0){
+            $user->roles()->sync('1'); // 1->Administrator
+        }else{
+            $user->roles()->sync('5'); // 5->Customer
+        }
+
+
 
         event(new Registered($user));
 
