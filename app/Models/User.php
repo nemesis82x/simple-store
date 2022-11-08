@@ -45,14 +45,17 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
+    // Relazioni
+
     public function roles() {
         return $this->belongsToMany(Role::class);
     }
 
-    public function userphotos() {
-        return $this->belongsToMany(UserPhoto::class);
+    public function photos(){
+        return $this->hasMany(UserPhoto::class);
     }
 
+    // Verifica ruoli
     public function isAdmin() {
         return $this->roles()->where('name', 'Administrator')->exists();
     }

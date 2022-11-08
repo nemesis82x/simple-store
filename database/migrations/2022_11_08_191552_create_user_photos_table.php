@@ -9,10 +9,12 @@ return new class extends Migration {
     {
         Schema::create('user_photos', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('user_id')->unsigned();
             $table->string('name')->nullable();
             $table->string('path')->nullable();
             $table->string('type')->nullable();
             $table->timestamps();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

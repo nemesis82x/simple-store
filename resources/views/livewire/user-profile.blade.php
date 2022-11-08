@@ -9,16 +9,19 @@
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
             <div class="p-6 bg-white border-b border-gray-200">
                 <div>
-                    <div>
-                        @if (session()->has('message'))
-                            <div class="bg-blue-100 border border-blue-400 text-black px-4 py-3 rounded relative mb-2">
-                                {{ session('message') }}
-                            </div>
-                        @endif
-                    </div>
+
 
                     <!-- Body -->
-                    <form>
+                    <form wire:submit.prevent="save">
+                        @csrf
+                        <div>
+                            @if (session()->has('message'))
+                                <div class="bg-blue-100 border border-blue-400 text-black px-4 py-3 rounded relative mb-2">
+                                    {{ session('message') }}
+                                </div>
+                            @endif
+                        </div>
+
                     <div class="flex flex-col md:flex-row md:space-x-8">
                         <div class="w-full md:w-80">
                             <img class="w-full rounded" src="https://picsum.photos/200" alt="Extra large avatar">
@@ -35,9 +38,18 @@
                                 <label for="email" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Email address</label>
                             </div>
                             <input type="text" wire:model="role">
+                            <input type="text" wire:model="avatar">
+                            <input type="text" wire:model="hero">
+                            <input type="text" wire:model="pic01">
+                            <input type="text" wire:model="pic02">
+                            <input type="text" wire:model="pic03">
                         </div>
                     </div>
-
+                        <div>
+                            <button wire:click="save" type="submit" class="block w-full bg-blue-100 text-sm text-gray-500 rounded-md my-4 px-2 py-2">
+                                Save
+                            </button>
+                        </div>
                     </form>
 
                     <!-- Body -->
