@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration {
     public function up()
     {
-        Schema::create('user-photos', function (Blueprint $table) {
+        Schema::create('user_photos', function (Blueprint $table) {
             $table->id();
             $table->string('name')->nullable();
             $table->string('path')->nullable();
@@ -18,6 +18,6 @@ return new class extends Migration {
 
     public function down()
     {
-        Schema::dropIfExists('user-photos');
+        Schema::dropIfExists('user_photos');
     }
 };
