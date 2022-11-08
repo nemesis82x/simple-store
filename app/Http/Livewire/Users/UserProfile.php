@@ -43,12 +43,12 @@ class UserProfile extends Component
         $user = User::findOrFail(auth()->id());
         $user->name = $this->name;
 
-        $avatar = new UserPhoto;
+        $avatar = UserPhoto::where('user_id',$user->id);
+        $avatar->user_id = 101;
         $avatar->name = 'avatar';
 
-
-        $user->photos()->save($avatar);
-        $user->save();
+        $avatar->save();
+        //$user->save();
         $this->redirect('/profile');
         session()->flash('message', 'Profile updated successfully.');
     }
