@@ -26,16 +26,14 @@
                         <div class="w-full md:w-80">
 {{--                            <img class="w-full rounded" src="https://picsum.photos/200" alt="Extra large avatar" >--}}
 
-                            {{$avatar}}
-                            {{$test}}
-                             @if ($avatar)
-                                <img class="object-cover w-80 h-48 rounded-md" src="{{ $avatar->temporaryUrl() }}">
+
+                            @if ($tmp_avatar)
+                                <img class="object-cover w-80 h-48 rounded-md" src="{{ $tmp_avatar->temporaryUrl() }}">
                             @else
                                 <img class="object-cover w-80 h-48 rounded-md" src="{{ $avatar }}">
                             @endif
-
-                            <input type="file" wire:model="path_avatar">
-                            @error('path_avatar') <span class="error">{{ $message }}</span> @enderror
+                            <input type="file" wire:model="tmp_avatar" class="bg-yellow-500" >
+                            @error('avatar') <span class="error">{{ $message }}</span> @enderror
 
                         </div>
                         <div class="flex flex-col mt-4 md:mt-0 md:w-80">
@@ -51,9 +49,6 @@
                             </div>
                             <input type="text" wire:model="role">
 
-                            Avatar
-                            <input type="text" wire:model="avatar">
-
                             Hero
                             <input type="text" wire:model="hero">
                             Pic01
@@ -65,9 +60,9 @@
                         </div>
                     </div>
                         <div>
-                            <button wire:click="save" type="submit" class="block w-full bg-blue-100 text-sm text-gray-500 rounded-md my-4 px-2 py-2">
+                            <x-primary-button wire:click="save" type="submit">
                                 Save
-                            </button>
+                            </x-primary-button>
                         </div>
                     </form>
 

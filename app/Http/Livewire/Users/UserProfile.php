@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Users;
 use App\Models\Role;
 use App\Models\User;
 use App\Models\UserPhoto;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -21,6 +22,8 @@ class UserProfile extends Component
     public $pic01;
     public $pic02;
     public $pic03;
+
+    public $tmp_avatar;
 
     public function render()
     {
@@ -52,7 +55,7 @@ class UserProfile extends Component
     {
 
         $this->validate([
-            'path_avatar' => 'image|max:1024',
+            'tmp_avatar' => 'image|max:1024',
         ]);
 
     }
@@ -66,9 +69,9 @@ class UserProfile extends Component
         $photos = UserPhoto::where('user_id',$user->id)->pluck('id')->toArray();
         $photos = UserPhoto::findOrFail($photos[0]);
         //$photos->name_avatar = $this->name_avatar;
-        $photos->avatar = $this->avatar->getClientOriginalName();
+        $photos->avatar = 'storage/avatar/'.$this->tmp_avatar->getClientOriginalName();
 
-        $this->avatar->storeAs('avatar', 'storage/public/'.$this->avatar->getClientOriginalName(), 'public');
+        $this->tmp_avatar->storeAs('avatar', $this->tmp_avatar->getClientOriginalName(), 'public');
 
 /*        $image_path = User::findorFail($this->userId);
         $image_path = 'storage/avatar/' . $image_path->avatar;  // prev image path
