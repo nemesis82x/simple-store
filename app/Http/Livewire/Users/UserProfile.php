@@ -6,19 +6,21 @@ use App\Models\Role;
 use App\Models\User;
 use App\Models\UserPhoto;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class UserProfile extends Component
 {
+    use WithFileUploads;
+
     public $name;
     public $email;
     public $role;
+    public $photos;
     public $avatar;
     public $hero;
     public $pic01;
     public $pic02;
     public $pic03;
-
-
 
     public function render()
     {
@@ -36,39 +38,47 @@ class UserProfile extends Component
         $photos = UserPhoto::where('user_id',$user->id)->pluck('id')->toArray();
         $photos = UserPhoto::findOrFail($photos[0]);
 
+        $this->test = $photos->avatar;
+
         $this->name = $user->name;
         $this->email = $user->email;
         $this->role = $role;
-        $this->avatar = $photos->name_avatar;
+        $this->avatar = $photos->avatar;
+        //$this->path_avatar = $photos->path_avatar;
+    }
+
+    public function updatedPhoto()
+
+    {
+
+        $this->validate([
+            'path_avatar' => 'image|max:1024',
+        ]);
+
     }
 
     public function save()
     {
+
         $user = User::findOrFail(auth()->id());
         $user->name = $this->name;
 
-        $avatar = UserPhoto::where('user_id',auth()->id())
-        ->where('type','avatar')
-        ->pluck('id')
-        ->toArray();
-        //dd($avatar);
+        $photos = UserPhoto::where('user_id',$user->id)->pluck('id')->toArray();
+        $photos = UserPhoto::findOrFail($photos[0]);
+        //$photos->name_avatar = $this->name_avatar;
+        $photos->avatar = $this->avatar->getClientOriginalName();
 
-        $avatar_update = UserPhoto::where('user_id','101')
-            ->where('type','avatar')
-            ->firstOrFail();
+        $this->avatar->storeAs('avatar', 'storage/public/'.$this->avatar->getClientOriginalName(), 'public');
 
-           // dd($avatar);
+/*        $image_path = User::findorFail($this->userId);
+        $image_path = 'storage/avatar/' . $image_path->avatar;  // prev image path
+        if (File::exists($image_path)) {
+            File::delete($image_path);
+        }*/
 
-            $user->photos()->sync('pippo');
 
 
-       // $avatar = UserPhoto::findOrFail($avatar[0]);
-
-        //dd($avatar);
-        $avatar->name = 'avatar';
-        $avatar->path = 'ava_path';
-
-        $avatar->save();
+        $photos->save();
         //$user->save();
         $this->redirect('/profile');
         session()->flash('message', 'Profile updated successfully.');

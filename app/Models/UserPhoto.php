@@ -8,16 +8,11 @@ class UserPhoto extends Model
 {
     protected $fillable = [
         'user_id',
-        'name_avatar',
-        'path_avatar',
-        'name_hero',
-        'path_hero',
-        'name_pic01',
-        'path_pic01',
-        'name_pic02',
-        'path_pic02',
-        'name_pic03',
-        'path_pic03',
+        'avatar',
+        'hero',
+        'pic01',
+        'pic02',
+        'pic03',
 
     ];
 

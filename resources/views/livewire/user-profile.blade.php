@@ -24,7 +24,19 @@
 
                     <div class="flex flex-col md:flex-row md:space-x-8">
                         <div class="w-full md:w-80">
-                            <img class="w-full rounded" src="https://picsum.photos/200" alt="Extra large avatar">
+{{--                            <img class="w-full rounded" src="https://picsum.photos/200" alt="Extra large avatar" >--}}
+
+                            {{$avatar}}
+                            {{$test}}
+                             @if ($avatar)
+                                <img class="object-cover w-80 h-48 rounded-md" src="{{ $avatar->temporaryUrl() }}">
+                            @else
+                                <img class="object-cover w-80 h-48 rounded-md" src="{{ $avatar }}">
+                            @endif
+
+                            <input type="file" wire:model="path_avatar">
+                            @error('path_avatar') <span class="error">{{ $message }}</span> @enderror
+
                         </div>
                         <div class="flex flex-col mt-4 md:mt-0 md:w-80">
                             <div class="relative z-0 mb-6 w-full group">
@@ -40,20 +52,16 @@
                             <input type="text" wire:model="role">
 
                             Avatar
-                            <input type="text" wire:model="name_avatar">
-                            <input type="text" wire:model="path_avatar">
+                            <input type="text" wire:model="avatar">
+
                             Hero
-                            <input type="text" wire:model="name_hero">
-                            <input type="text" wire:model="path_hero">
+                            <input type="text" wire:model="hero">
                             Pic01
-                            <input type="text" wire:model="name_pic01">
-                            <input type="text" wire:model="pathpic01">
+                            <input type="text" wire:model="pic01">
                             Pic02
-                            <input type="text" wire:model="name_pic02">
-                            <input type="text" wire:model="path_pic02">
+                            <input type="text" wire:model="pic02">
                             Pic03
-                            <input type="text" wire:model="name_pic03">
-                            <input type="text" wire:model="pathpic03">
+                            <input type="text" wire:model="pic03">
                         </div>
                     </div>
                         <div>
