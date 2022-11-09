@@ -83,9 +83,6 @@ use App\Models\User;
                 </a>
             </li>
 
-            @if(Auth::user()->isAdmin() or Auth::user()->isManager())
-
-
                 <li>
                     <button type="button" class="flex items-center w-full p-2 text-base font-normal text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700" aria-controls="dropdown-shop" data-collapse-toggle="dropdown-user">
                         <svg aria-hidden="true" class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
@@ -93,6 +90,7 @@ use App\Models\User;
                         <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
                     </button>
                     <ul id="dropdown-user" class="hidden py-2 space-y-2">
+                        @if(Auth::user()->isAdmin() or Auth::user()->isManager())
                         <li>
                             <a href="/users" class="flex items-center w-full p-2 text-base font-normal text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 justify-between">Active
                                 <span class="inline-flex items-center justify-center w-3 h-3 p-3 ml-3 text-sm font-medium text-blue-600 bg-blue-200 rounded-full dark:bg-blue-900 dark:text-blue-200">{{$totalUsers}}</span></a>
@@ -101,13 +99,14 @@ use App\Models\User;
                             <a href="/trash" class="flex items-center w-full p-2 text-base font-normal text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 justify-between">Trashed
                                 <span class="inline-flex items-center justify-center w-3 h-3 p-3 ml-3 text-sm font-medium text-blue-600 bg-blue-200 rounded-full dark:bg-blue-900 dark:text-blue-200">{{$trashedUsers}}</span></a>
                         </li>
+                        @endif
                         <li>
                             <a href="/profile" class="flex items-center w-full p-2 text-base font-normal text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 justify-between">Profile</a>
                           </li>
                     </ul>
                 </li>
 
-            @endif
+
             <!-- Gestione del logout in menu dropdown -->
             <li class="nav-item ">
                 <form action="logout" method="post" id="logout">

@@ -33,9 +33,13 @@ class UserProfile extends Component
             $query->where('user_id',auth()->id());
         })->pluck('name');
 
+        $photos = UserPhoto::where('user_id',$user->id)->pluck('id')->toArray();
+        $photos = UserPhoto::findOrFail($photos[0]);
+
         $this->name = $user->name;
         $this->email = $user->email;
         $this->role = $role;
+        $this->avatar = $photos->name_avatar;
     }
 
     public function save()
@@ -52,11 +56,6 @@ class UserProfile extends Component
         $avatar_update = UserPhoto::where('user_id','101')
             ->where('type','avatar')
             ->firstOrFail();
-dd($avatar_update);
-        if($avatar_update){
-            return 'vuoto';
-        }
-
 
            // dd($avatar);
 

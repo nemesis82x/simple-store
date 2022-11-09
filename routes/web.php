@@ -26,9 +26,9 @@ Route::get('/dashboard', function () {
 
 //Route::get('/users',ManageUsers::class)->middleware(['auth','verified'])->name('users');
 
-Route::get('/users',ManageUsers::class);
-Route::get('/trash',TrashUsers::class);
-Route::get('/profile',UserProfile::class);
+Route::get('/users',ManageUsers::class)->middleware(['auth', 'verified'])->name('users');
+Route::get('/trash',TrashUsers::class)->middleware(['auth', 'verified'])->name('trash');
+Route::get('/profile',UserProfile::class)->middleware(['auth', 'verified'])->name('profile');
 
 
 /*Route::get('/dashboard', function () {

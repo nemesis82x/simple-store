@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\UserPhoto;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
@@ -59,6 +60,22 @@ class RegisteredUserController extends Controller
         }else{
             $user->roles()->sync('5'); // 5->Customer
         }
+
+        //dd($user->id);
+
+        $photos = UserPhoto::create([
+            'user_id' => $user->id,
+            'name_avatar' => '',
+            'path_avatar' => '',
+            'name_hero' => '',
+            'path_hero' => '',
+            'name_pic01' => '',
+            'path_pic01' => '',
+            'name_pic02' => '',
+            'path_pic02' => '',
+            'name_pic03' => '',
+            'path_pic03' => '',
+        ]);
 
 
 
