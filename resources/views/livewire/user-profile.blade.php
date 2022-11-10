@@ -24,14 +24,14 @@
 
                     <div class="flex flex-col md:flex-row md:space-x-8">
                         <div class="w-full md:w-80">
-                                <label for="file-input">
+                                <label for="avatar-input">
                             @if ($tmp_avatar)
                                     <img class="object-cover w-80 h-48 rounded-md cursor-pointer" src="{{ $tmp_avatar->temporaryUrl() }}">
                             @else
                                     <img src="{{$avatar}}" class="object-cover w-80 h-48 rounded-md cursor-pointer" alt="{{$avatar}}"/>
                             @endif
                                  </label>
-                                    <input id="file-input" type="file" wire:model="tmp_avatar" hidden />
+                                    <input id="avatar-input" type="file" wire:model="tmp_avatar" hidden />
                             @error('avatar') <span class="error">{{ $message }}</span> @enderror
 
                         </div>
