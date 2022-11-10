@@ -22,6 +22,21 @@
                             @endif
                         </div>
 
+                        <div id="hero" class="mb-6">
+                            <div class="w-full">
+                                <label for="hero-input">
+                                    @if ($tmp_hero)
+                                        <img class="object-cover w-full h-48 rounded-md cursor-pointer" src="{{ $tmp_hero->temporaryUrl() }}">
+                                    @else
+                                        <img src="{{$hero}}" class="object-cover w-full h-48 rounded-md cursor-pointer" alt="{{$hero}}"/>
+                                    @endif
+                                </label>
+                                <input id="hero-input" type="file" wire:model="tmp_hero" hidden />
+                                @error('hero') <span class="error">{{ $message }}</span> @enderror
+
+                            </div>
+                        </div>
+
                     <div class="flex flex-col md:flex-row md:space-x-8">
                         <div class="w-full md:w-80">
                                 <label for="avatar-input">
