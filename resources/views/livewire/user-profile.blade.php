@@ -12,7 +12,7 @@
 
 
                     <!-- Body -->
-                    <form wire:submit.prevent="save">
+                    <form wire:submit.prevent="save" enctype="multipart/form-data">
                         @csrf
                         <div>
                             @if (session()->has('message'))
@@ -24,12 +24,10 @@
 
                     <div class="flex flex-col md:flex-row md:space-x-8">
                         <div class="w-full md:w-80">
-{{--                            <img class="w-full rounded" src="https://picsum.photos/200" alt="Extra large avatar" >--}}
-
-
                             @if ($tmp_avatar)
                                 <img class="object-cover w-80 h-48 rounded-md" src="{{ $tmp_avatar->temporaryUrl() }}">
                             @else
+                                <a href=""
                                 <img class="object-cover w-80 h-48 rounded-md" src="{{ $avatar }}">
                             @endif
                             <input type="file" wire:model="tmp_avatar" class="bg-yellow-500" >
