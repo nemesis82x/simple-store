@@ -34,6 +34,8 @@ class UserProfile extends Component
         'tmp_avatar' => 'image|max:1024',
         'tmp_hero' => 'image|max:1024',
         'tmp_pic01' => 'image|max:1024',
+        'tmp_pic02' => 'image|max:1024',
+        'tmp_pic03' => 'image|max:1024',
 
     ];
 
