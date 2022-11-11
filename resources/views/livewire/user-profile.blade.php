@@ -84,8 +84,8 @@
                         <div>
                             </div>
 
-                        <div class="flex flex-row md:flex-row md:space-x-8 space-y-8">
-                            <div id="pic01" class="mb-6">
+                        <div class="flex flex-row md:flex-row space-y-8 gap-8">
+                            <div id="none" class="mb-6">
                              </div>
 
                             <div id="pic01" class="mb-6">
@@ -93,7 +93,7 @@
                                 @if ($tmp_pic01)
                                     <img class="object-cover rounded-md cursor-pointer" src="{{ $tmp_pic01->temporaryUrl() }}">
                                 @else
-                                    <img src="storage/picture/{{$pic01}}" class="object-cover rounded-md" alt="{{Str::substr($pic01,11)}}"/>
+                                    <img src="storage/picture/{{$pic01}}" class="object-cover rounded-md h-48 w-96" alt="{{Str::substr($pic01,11)}}"/>
                                 @endif
                                     <input id="pic01-input" type="file" wire:model="tmp_pic01" hidden />
                                     @error('tmp_pic01') <p class="bg-red-400 border border-red-400 text-black px-4 py-3 rounded relative mb-2">{{ $message }}</p> @enderror
@@ -105,7 +105,7 @@
                                         @if ($tmp_pic02)
                                             <img class="object-cover rounded-md cursor-pointer" src="{{ $tmp_pic02->temporaryUrl() }}">
                                         @else
-                                            <img src="storage/picture/{{$pic02}}" class="object-cover rounded-md" alt="{{Str::substr($pic02,11)}}"/>
+                                            <img src="storage/picture/{{$pic02}}" class="object-cover rounded-md h-48 w-96" alt="{{Str::substr($pic02,11)}}"/>
                                         @endif
                                     <input id="pic02-input" type="file" wire:model="tmp_pic02" hidden />
                                             @error('tmp_pic02') <p class="bg-red-400 border border-red-400 text-black px-4 py-3 rounded relative mb-2">{{ $message }}</p> @enderror
@@ -117,12 +117,14 @@
                                         @if ($tmp_pic03)
                                             <img class="object-cover rounded-md cursor-pointer" src="{{ $tmp_pic03->temporaryUrl() }}">
                                         @else
-                                            <img src="storage/picture/{{$pic03}}" class="object-cover rounded-md" alt="{{Str::substr($pic03,11)}}"/>
+                                            <img src="storage/picture/{{$pic03}}" class="object-cover rounded-md h-48 w-96" alt="{{Str::substr($pic03,11)}}"/>
                                         @endif
                                     <input id="pic03-input" type="file" wire:model="tmp_pic03" hidden />
                                             @error('tmp_pic03') <p class="bg-red-400 border border-red-400 text-black px-4 py-3 rounded relative mb-2">{{ $message }}</p> @enderror
                                     </label>
                                 </div>
+                            <div id="none" class="mb-6">
+                            </div>
                             </div>
 
                             <x-primary-button type="submit">

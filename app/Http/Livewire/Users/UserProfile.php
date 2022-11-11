@@ -29,6 +29,8 @@ class UserProfile extends Component
     public $tmp_pic02;
     public $tmp_pic03;
 
+    public $validated;
+
     protected $rules = [
 
         'tmp_avatar' => 'image|max:1024',
@@ -41,7 +43,8 @@ class UserProfile extends Component
 
     public function updated($field){
 
-        $this->validateOnly($field);
+        //dd($field);
+        $this->validated = $this->validateOnly($field);
 
     }
 
@@ -75,7 +78,16 @@ class UserProfile extends Component
 
     public function save()
     {
-        $this->validate();
+
+
+        foreach ($this->validated as $item)
+        {
+
+            $this->validateOnly($item);
+        }
+
+
+        //$this->validateOnly($this->validated);
 
         $user = User::findOrFail(auth()->id());
         $user->name = $this->name;
