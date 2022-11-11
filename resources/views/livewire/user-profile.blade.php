@@ -12,11 +12,11 @@
 
 
                     <!-- Body -->
-                    <form wire:submit.prevent="save" enctype="multipart/form-data">
+                    <form wire:submit.prevent="save">
                         @csrf
                         <div>
                             @if (session()->has('message'))
-                                <div class="bg-blue-100 border border-blue-400 text-black px-4 py-3 rounded relative mb-2">
+                                <div class="bg-red-400 border border-red-400 text-black px-4 py-3 rounded relative mb-2">
                                     {{ session('message') }}
                                 </div>
                             @endif
@@ -75,7 +75,7 @@
                         </div>
                     </div>
                         <div>
-                            <x-primary-button wire:click="save" type="submit">
+                            <x-primary-button type="submit">
                                 Save
                             </x-primary-button>
                         </div>

@@ -6,7 +6,7 @@ use App\Models\Role;
 use App\Models\User;
 use App\Models\UserPhoto;
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -27,6 +27,23 @@ class UserProfile extends Component
     public $tmp_avatar;
     public $tmp_hero;
 
+    public function updated(){
+        $validator = Validator::make(
+            [
+                'tmp_avatar'  => $this->tmp_avatar,
+            ],
+            [
+                'tmp_avatar'  => 'max:1024|mimes:jpg,jpeg,png,gif',
+            ]
+        );
+
+        if ($validator->fails()) {
+            session()->flash('message', 'Oops! Something went wrong...');
+        }
+
+        $validator->validate();
+    }
+
     public function render()
     {
         return view('livewire.user-profile');
@@ -43,8 +60,6 @@ class UserProfile extends Component
         $photos = UserPhoto::where('user_id',$user->id)->pluck('id')->toArray();
         $photos = UserPhoto::findOrFail($photos[0]);
 
-        $this->test = $photos->avatar;
-
         $this->name = $user->name;
         $this->email = $user->email;
         $this->role = $role;
@@ -52,17 +67,6 @@ class UserProfile extends Component
         //Image Section
         $this->avatar = $photos->avatar;
         $this->hero = $photos->hero;
-    }
-
-    public function updatedPhoto()
-
-    {
-
-        $this->validate([
-            'tmp_avatar' => 'image|max:1024',
-            'tmp_hero' => 'image|max:1024',
-        ]);
-
     }
 
     public function save()
