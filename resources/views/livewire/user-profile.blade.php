@@ -28,7 +28,7 @@
                                     @if ($tmp_hero)
                                         <img class="object-cover w-full h-48 rounded-md cursor-pointer" src="{{ $tmp_hero->temporaryUrl() }}">
                                     @else
-                                        <img src="{{$hero}}" class="object-cover w-full h-48 rounded-md cursor-pointer" alt="{{$hero}}"/>
+                                        <img src="storage/hero/{{$hero}}" class="object-cover w-full h-48 rounded-md cursor-pointer" alt="{{Str::substr($hero,11)}}"/>
                                     @endif
                                 </label>
                                 <input id="hero-input" type="file" wire:model="tmp_hero" hidden />
@@ -43,8 +43,9 @@
                             @if ($tmp_avatar)
                                     <img class="object-cover w-80 h-48 rounded-md cursor-pointer" src="{{ $tmp_avatar->temporaryUrl() }}">
                             @else
-                                    <img src="{{$avatar}}" class="object-cover w-80 h-48 rounded-md cursor-pointer" alt="{{$avatar}}"/>
+                                    <img src="storage/avatar/{{$avatar}}" class="object-cover w-80 h-48 rounded-md cursor-pointer" alt=" {{Str::substr($avatar,11)}}"/>
                             @endif
+
                                  </label>
                                     <input id="avatar-input" type="file" wire:model="tmp_avatar" hidden />
                             @error('avatar') <span class="error">{{ $message }}</span> @enderror

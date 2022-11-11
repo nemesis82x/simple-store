@@ -82,8 +82,8 @@ class UserProfile extends Component
                         File::delete($old_avatar);
                     }
 
-                $photos->avatar = 'storage/avatar/'.$this->tmp_avatar->getClientOriginalName();
-                $this->tmp_avatar->storeAs('avatar', $this->tmp_avatar->getClientOriginalName(), 'public');
+                $photos->avatar = time(). '_'.$this->tmp_avatar->getClientOriginalName();
+                $this->tmp_avatar->storeAs('avatar', time(). '_'. $this->tmp_avatar->getClientOriginalName(), 'public');
                 }
 
                 if($this->tmp_hero){
@@ -93,8 +93,8 @@ class UserProfile extends Component
                         File::delete($old_hero);
                     }
 
-                    $photos->hero = 'storage/hero/'.$this->tmp_hero->getClientOriginalName();
-                    $this->tmp_hero->storeAs('hero', $this->tmp_hero->getClientOriginalName(), 'public');
+                    $photos->hero = time(). '_'.$this->tmp_hero->getClientOriginalName();
+                    $this->tmp_hero->storeAs('hero', time(). '_'. $this->tmp_hero->getClientOriginalName(), 'public');
                 }
 
 
