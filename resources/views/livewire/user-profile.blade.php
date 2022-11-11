@@ -16,10 +16,15 @@
                         @csrf
                         <div>
                             @if (session()->has('message'))
-                                <div class="bg-red-400 border border-red-400 text-black px-4 py-3 rounded relative mb-2">
+                                <div class="bg-blue-100 border border-blue-400 text-black px-4 py-3 rounded relative mb-2">
                                     {{ session('message') }}
                                 </div>
                             @endif
+                                @if (session()->has('error'))
+                                <div class="bg-red-400 border border-red-400 text-black px-4 py-3 rounded relative mb-2">
+                                    {{ session('error') }}
+                                </div>
+                                @endif
                         </div>
 
                         <div id="hero" class="mb-6">
@@ -32,7 +37,6 @@
                                     @endif
                                 </label>
                                 <input id="hero-input" type="file" wire:model="tmp_hero" hidden />
-                                @error('hero') <span class="error">{{ $message }}</span> @enderror
 
                             </div>
                         </div>
@@ -48,7 +52,6 @@
 
                                  </label>
                                     <input id="avatar-input" type="file" wire:model="tmp_avatar" hidden />
-                            @error('avatar') <span class="error">{{ $message }}</span> @enderror
 
                         </div>
                         <div class="flex flex-col mt-4 md:mt-0 md:w-80">
@@ -73,12 +76,62 @@
                             Pic03
                             <input type="text" wire:model="pic03">
                         </div>
+
                     </div>
                         <div>
+                            </div>
+
+                        <div class="flex flex-row md:flex-row md:space-x-8">
+                            <div id="pic01" class="mb-6">
+                                Profile Picture
+                                <div class="container">
+                                    <label for="pic01-input">
+                                        @if ($tmp_pic01)
+                                            <img class="object-cover rounded-md cursor-pointer" src="{{ $tmp_pic01->temporaryUrl() }}">
+                                        @else
+                                            <img src="storage/picture/{{$pic01}}" class="object-cover rounded-md cursor-pointer" alt="{{Str::substr($pic01,11)}}"/>
+                                        @endif
+                                    </label>
+                                    <input id="pic01-input" type="file" wire:model="tmp_pic01" hidden />
+
+                                </div>
+                            </div>
+
+                            <div id="pic02" class="mb-6">
+                                Profile Picture
+                                <div class="container">
+                                    <label for="pic02-input">
+                                        @if ($tmp_pic02)
+                                            <img class="object-cover rounded-md cursor-pointer" src="{{ $tmp_pic02->temporaryUrl() }}">
+                                        @else
+                                            <img src="storage/picture/{{$pic02}}" class="object-cover rounded-md cursor-pointer" alt="{{Str::substr($pic02,11)}}"/>
+                                        @endif
+                                    </label>
+                                    <input id="pic02-input" type="file" wire:model="tmp_pic02" hidden />
+
+                                </div>
+                            </div>
+
+                            <div id="pic03" class="mb-6">
+                                Profile Picture
+                                <div class="container">
+                                    <label for="pic03-input">
+                                        @if ($tmp_pic03)
+                                            <img class="object-cover rounded-md cursor-pointer" src="{{ $tmp_pic03->temporaryUrl() }}">
+                                        @else
+                                            <img src="storage/picture/{{$pic03}}" class="object-cover rounded-md cursor-pointer" alt="{{Str::substr($pic03,11)}}"/>
+                                        @endif
+                                    </label>
+                                    <input id="pic03-input" type="file" wire:model="tmp_pic03" hidden />
+
+                                </div>
+                            </div>
+
+                        </div>
+
                             <x-primary-button type="submit">
                                 Save
                             </x-primary-button>
-                        </div>
                     </form>
 
                     <!-- Body -->
