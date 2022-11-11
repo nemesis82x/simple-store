@@ -6,7 +6,6 @@ use App\Models\Role;
 use App\Models\User;
 use App\Models\UserPhoto;
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -30,23 +29,18 @@ class UserProfile extends Component
     public $tmp_pic02;
     public $tmp_pic03;
 
-    public function updated(){
-        $validator = Validator::make(
-            [
-                'tmp_avatar'  => $this->tmp_avatar,
-                'tmp_hero' => $this->tmp_hero,
-            ],
-            [
-                'tmp_avatar'  => 'max:1024|mimes:jpg,jpeg,png,gif',
-                'tmp_hero'  => 'max:1024|mimes:jpg,jpeg,png,gif',
-            ]
-        );
+    protected $rules = [
 
-        if ($validator->fails()) {
-            session()->flash('error', 'Oops! Something went wrong... Accepted only file type jpg,jpeg,png,gif max size 1024 bytes');
-        }
+        'tmp_avatar' => 'image|max:1024',
+        'tmp_hero' => 'image|max:1024',
+        'tmp_pic01' => 'image|max:1024',
 
-        $validator->validate();
+    ];
+
+    public function updated($field){
+
+        $this->validateOnly($field);
+
     }
 
     public function render()
@@ -70,15 +64,16 @@ class UserProfile extends Component
         $this->role = $role;
 
         //Image Section
-        $this->avatar = $photos->avatar;
-        $this->hero = $photos->hero;
-        $this->pic01 = $photos->pic01;
-        $this->pic02 = $photos->pic02;
-        $this->pic03 = $photos->pic03;
+        $this->avatar = $photos->avatar ? $photos->avatar : 'default.jpg';
+        $this->hero = $photos->hero ? $photos->hero : 'default.jpg';
+        $this->pic01 = $photos->pic01 ? $photos->pic01 : 'default.jpg';
+        $this->pic02 = $photos->pic02 ? $photos->pic02 : 'default.jpg';
+        $this->pic03 = $photos->pic03 ? $photos->pic03 : 'default.jpg';
     }
 
     public function save()
     {
+        $this->validate();
 
         $user = User::findOrFail(auth()->id());
         $user->name = $this->name;
